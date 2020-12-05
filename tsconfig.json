@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": [
+      "es6"
+    ],
+    "moduleResolution": "node",
+    "target": "es5",
+    "sourceMap": true,
+    "declaration": true,
+    "removeComments": true,
+    "importHelpers": true,
+    "baseUrl": ".",
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "./src/**/index.ts"
+  ],
+  "exclude": [
+    ".src/preloadDialog.ts",
+    "node_modules"
+  ]
+}
