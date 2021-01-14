@@ -38,7 +38,7 @@ console.log('[Before]', dialog.showMessageBox)
 interface ShowMessageBoxFunction {
 	(options: MessageBoxOptions): Promise<Electron.MessageBoxReturnValue>;
 	(browserWindow: BrowserWindow, options: MessageBoxOptions): Promise<Electron.MessageBoxReturnValue>;
-  } 
+  }
 
   const fakeShowMB:ShowMessageBoxFunction = Object.assign(function (...args: any[]) {
 	console.log("Call wrapper ...")
@@ -48,7 +48,7 @@ interface ShowMessageBoxFunction {
         return fakeShowMessageBox(args[0], args[1])
     }
 });
-  
+
 //  let full:ShowMessageBoxFunction = {fakeShowMessageBox2, fakeShowMessageBox}
 
 // interface Foo {

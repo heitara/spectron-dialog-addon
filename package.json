@@ -9,8 +9,11 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "build:preload": "tsc -p tsconfig.preload.json; cp dist/preloadDialog.js src",
+    "build:preload": "tsc -p tsconfig.preload.json; cp dist/preloadDialog.js src; cp dist/preloadContextMenu.js src",
+    "build:preload:win": "tsc -p tsconfig.preload.json | copy dist\\preloadDialog.js src | copy dist\\preloadContextMenu.js src",
+    "build-all:win": "npm run build:preload:win && npm run build",
     "build-all": "npm run build:preload && npm run build",
+    "build:copy-all:win": "npm run build-all:win && copy dist\\*.* ..\\surpassviewer\\node_modules\\spectron-dialog-addon\\dist",
     "test": "yarn build && yarn build:preload && mocha --reporter spec --require ts-node/register test/*test.ts && rm src/preload.js ",
     "lint": "tslint --config tslint.json -p tsconfig.json --format stylish"
   },

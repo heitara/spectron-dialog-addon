@@ -20,6 +20,7 @@
   ],
   "exclude": [
     ".src/preloadDialog.ts",
+    ".src/preloadContextMenu.ts",
     "node_modules"
   ]
 }

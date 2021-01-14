@@ -13,6 +13,8 @@ var SpectronDialogAddon = (function () {
         }
         options.args.unshift(path.join(__dirname, 'preloadDialog.js'));
         options.args.unshift('--require');
+        options.args.unshift(path.join(__dirname, 'preloadContextMenu.js'));
+        options.args.unshift('--require');
         this.app = new spectron_1.Application(options);
         return this.app;
     };
@@ -37,6 +39,30 @@ var SpectronDialogAddon = (function () {
                     case 0:
                         console.log('[Call]: ', 'setDialogButtonIndex(', index, ')');
                         return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_DIALOG_ADDON/SET_DIALOG_BUTTON_INDEX', index)];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    SpectronDialogAddon.prototype.getItemsCount = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.app.electron['remote']['ipcMain'].emit('SPECTRON_DIALOG_ADDON/GET_ITEMS_COUNT')];
+                    case 1: return [2, _a.sent()];
+                }
+            });
+        });
+    };
+    SpectronDialogAddon.prototype.setContextMenuId = function (name) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('[Call]: ', 'setContextMenuId(', name, ')');
+                        return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME', name)];
                     case 1:
                         _a.sent();
                         return [2];

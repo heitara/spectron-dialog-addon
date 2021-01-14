@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig",
-  "include": ["./src/preloadDialog.ts"],
+  "include": ["./src/preloadDialog.ts","./src/preloadContextMenu.ts",],
   "exclude": ["node_modules"],
   "compilerOptions": {
 	  "strictNullChecks": false,
