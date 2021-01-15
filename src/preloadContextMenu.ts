@@ -44,7 +44,7 @@ console.log('[After]M', Menu.buildFromTemplate)
 /**
  * Register a SET_DIALOG_DELAY handler
  */
-ipcMain.on('SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME', (e:IpcMainEvent , id:string) => {
+ipcMain.on('SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME', (id) => {
     console.log('[PRELOAD] SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME')
     contextMenuId = id
     if (contextMenu) {
@@ -56,7 +56,7 @@ ipcMain.on('SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME', (e:IpcMainEvent , id:s
 /**
  * Register a SET_DIALOG_DELAY handler
  */
-ipcMain.on('SPECTRON_DIALOG_ADDON/GET_ITEMS_COUNT', (e:IpcMainEvent, dict) => {
+ipcMain.on('SPECTRON_DIALOG_ADDON/GET_ITEMS_COUNT', (e:IpcMainEvent) => {
     let itemsCount = 0
     if (contextMenu) {
         let items = contextMenu.items
