@@ -22,9 +22,7 @@ var SpectronDialogAddon = (function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log('[Call]: ', 'setDialogDelay(', delay, ')');
-                        return [4, this.app.electron.ipcMain.emit('SPECTRON_DIALOG_ADDON/SET_DIALOG_DELAY', delay)];
+                    case 0: return [4, this.app.electron.ipcMain.emit('SPECTRON_DIALOG_ADDON/SET_DIALOG_DELAY', delay)];
                     case 1:
                         _a.sent();
                         return [2];
@@ -36,9 +34,7 @@ var SpectronDialogAddon = (function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log('[Call]: ', 'setDialogButtonIndex(', index, ')');
-                        return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_DIALOG_ADDON/SET_DIALOG_BUTTON_INDEX', index)];
+                    case 0: return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_DIALOG_ADDON/SET_DIALOG_BUTTON_INDEX', index)];
                     case 1:
                         _a.sent();
                         return [2];
@@ -50,9 +46,7 @@ var SpectronDialogAddon = (function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log('[Call]: ', 'emitSpectronEvent(', event, data, ')');
-                        return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_EVENT/SEND', event, { event: event, data: data })];
+                    case 0: return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_EVENT/SEND', event, { event: event, data: data })];
                     case 1:
                         _a.sent();
                         return [2];
@@ -74,9 +68,7 @@ var SpectronDialogAddon = (function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log('[Call]: ', 'setContextMenuId(', name, ')');
-                        return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME', name)];
+                    case 0: return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME', name)];
                     case 1:
                         _a.sent();
                         return [2];
