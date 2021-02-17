@@ -1,8 +1,10 @@
 import { MessageBoxReturnValue, ipcMain, Event, dialog, MessageBoxOptions, BrowserWindow } from 'electron'
+import * as events from 'events'
 
 console.log("[PRELOAD] Starting Dialog addon!!!")
 let dialogDelay = 1000
 let dialogButtonIndex = 1
+let spectronEmitter = new events.EventEmitter()
 
 /**
  * Update the default dialog implementation function with a mock one.
@@ -67,8 +69,10 @@ interface ShowMessageBoxFunction {
 // dialog.showMessageBox[0] = fakeShowMessageBox
 // let myShowMessageBoxFunction : ShowMessageBoxFunction = fakeShowMessageBox2, fakeShowMessageBox
 dialog.showMessageBox = fakeShowMB
+//hack
+dialog["spectronEmitter"] = spectronEmitter
 
-console.log('[After]', dialog.showMessageBox)
+console.log('[After Preload Dialog]', dialog.showMessageBox)
 
 // showMessageBox(browserWindow: BrowserWindow, options: MessageBoxOptions): Promise<Electron.MessageBoxReturnValue>;
 
@@ -87,3 +91,14 @@ ipcMain.on('SPECTRON_DIALOG_ADDON/SET_DIALOG_BUTTON_INDEX', (e, index) => {
 	console.log("[PRELOAD] SPECTRON_DIALOG_ADDON/SET_DIALOG_BUTTON_INDEX")
 	dialogButtonIndex = index
 })
+
+
+/**
+ * Register a SEND_SPECTRON_EVENT handler
+ */
+ipcMain.on('SPECTRON_EVENT/SEND', (e, data) => {
+	console.log("[PRELOAD] SPECTRON_EVENT/SEND", data.event, data.data)
+	spectronEmitter.emit(data.event, data.data)
+})
+
+console.log("Listen for downloadFile event!");

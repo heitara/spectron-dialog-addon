@@ -40,7 +40,11 @@ export class SpectronDialogAddon {
     console.log('[Call]: ', 'setDialogButtonIndex(', index, ')')
     await this.app.electron["remote"]["ipcMain"].emit('SPECTRON_DIALOG_ADDON/SET_DIALOG_BUTTON_INDEX', index)
   }
-
+  
+  async emitSpectronEvent(event: string, data: Object) {
+    console.log('[Call]: ', 'emitSpectronEvent(', event, data, ')')
+    await this.app.electron["remote"]["ipcMain"].emit('SPECTRON_EVENT/SEND', event, {event, data})
+  }
   /**
    * Send the button index that should be used when simulating a button click from a dialog
    * @param name The button index (e.g. 0, 1, 2, 3) If the index is invalid it will be returned.

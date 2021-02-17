@@ -4,6 +4,7 @@ export declare class SpectronDialogAddon {
     createApplication(options: AppConstructorOptions): Application;
     setDialogDelay(delay: number): Promise<void>;
     setDialogButtonIndex(index: number): Promise<void>;
+    emitSpectronEvent(event: string, data: Object): Promise<void>;
     getItemsCount(): Promise<number>;
     setContextMenuId(name: string): Promise<void>;
 }

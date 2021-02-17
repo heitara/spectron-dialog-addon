@@ -5,25 +5,18 @@ console.log("[PRELOAD] Starting Context Menu addon!!!");
 var contextMenuDelay = 1000;
 var contextMenuId = '';
 var oldBuildFromTemplate;
-var contextMenu = null;
-var _options;
+var contextMenu;
 function popup(options) {
     contextMenu = this;
-    _options = options;
 }
 function fakeBuildFromTemplate(template) {
-    console.log('Call fakeBuildFromTemplate(template: Array<(' + JSON.stringify(template) + '): Menu');
-    console.dir(template);
     var menu = oldBuildFromTemplate(template);
     menu.popup = popup;
     return menu;
 }
-console.log('[Before]M', electron_1.Menu.buildFromTemplate);
 oldBuildFromTemplate = electron_1.Menu.buildFromTemplate;
 electron_1.Menu.buildFromTemplate = fakeBuildFromTemplate;
-console.log('[After]M', electron_1.Menu.buildFromTemplate);
-electron_1.ipcMain.on('SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME', function (id) {
-    console.log('[PRELOAD] SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME');
+electron_1.ipcMain.on('SPECTRON_DIALOG_ADDON/SET_CONTEXT_MENU_NAME', function (e, id) {
     contextMenuId = id;
     if (contextMenu) {
         var menuItem = contextMenu.getMenuItemById(id);

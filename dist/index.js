@@ -46,6 +46,20 @@ var SpectronDialogAddon = (function () {
             });
         });
     };
+    SpectronDialogAddon.prototype.emitSpectronEvent = function (event, data) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('[Call]: ', 'emitSpectronEvent(', event, data, ')');
+                        return [4, this.app.electron["remote"]["ipcMain"].emit('SPECTRON_EVENT/SEND', event, { event: event, data: data })];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
     SpectronDialogAddon.prototype.getItemsCount = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
             return tslib_1.__generator(this, function (_a) {

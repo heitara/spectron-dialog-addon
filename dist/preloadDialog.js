@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
+var events = require("events");
 console.log("[PRELOAD] Starting Dialog addon!!!");
 var dialogDelay = 1000;
 var dialogButtonIndex = 1;
+var spectronEmitter = new events.EventEmitter();
 function fakeShowMessageBox(browserWindow, options) {
     console.log("Call ShowMessageBox(browserWindow: BrowserWindow,options: MessageBoxOptions): Promise<Electron.MessageBoxReturnValue>");
     var promise = new Promise(function (resolve, reject) {
@@ -37,7 +39,8 @@ var fakeShowMB = Object.assign(function () {
     }
 });
 electron_1.dialog.showMessageBox = fakeShowMB;
-console.log('[After]', electron_1.dialog.showMessageBox);
+electron_1.dialog["spectronEmitter"] = spectronEmitter;
+console.log('[After Preload Dialog]', electron_1.dialog.showMessageBox);
 electron_1.ipcMain.on('SPECTRON_DIALOG_ADDON/SET_DIALOG_DELAY', function (e, delay) {
     console.log("[PRELOAD] SPECTRON_DIALOG_ADDON/SET_DIALOG_DELAY");
     dialogDelay = delay;
@@ -46,3 +49,8 @@ electron_1.ipcMain.on('SPECTRON_DIALOG_ADDON/SET_DIALOG_BUTTON_INDEX', function 
     console.log("[PRELOAD] SPECTRON_DIALOG_ADDON/SET_DIALOG_BUTTON_INDEX");
     dialogButtonIndex = index;
 });
+electron_1.ipcMain.on('SPECTRON_EVENT/SEND', function (e, data) {
+    console.log("[PRELOAD] SPECTRON_EVENT/SEND", data.event, data.data);
+    spectronEmitter.emit(data.event, data.data);
+});
+console.log("Listen for downloadFile event!");
